@@ -38,11 +38,13 @@ function formatDate(date) {
 }
 
 function searchCity(city) {
-  let apiKey = "fbef01f4et1b02o0d25c27210a43ef3f";
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(refreshWeather);
 }
-
+function displayForecast(response) {
+  
+}
 function handleSearchsubmit(event) {
   event.preventDefault();
   let searchInput = document.querySelector("#search-form-input");
@@ -50,7 +52,41 @@ function handleSearchsubmit(event) {
   searchCity(searchInput.value);
 }
 
+function getForecast(city) {
+//   let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+//   let apiUrl = "";
+// }
+
+// function displayForecast() {
+//   let forecast = document.querySelector("#forecast");
+//   let forecastElement = document.querySelector("#forecast");
+
+//   let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+//   let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+    <div class="weather-forecast-day">
+        <div class="weather-forecast-date">${day}</div> 
+        <div class="weather-forecast-icon">⛅</div>
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperatures-max">
+          18°</span>
+          
+          <span class="weather-forecast-temperatures-min">
+          12°</span>
+          </div>
+        </div>
+        
+        `;
+  });
+
+  forecastElement.innerHTML = forecastHtml;
+}
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchsubmit);
 
 searchCity("Lake Country");
+displayForecast();
